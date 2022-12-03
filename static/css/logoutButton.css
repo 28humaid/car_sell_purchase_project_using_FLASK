@@ -1,0 +1,7 @@
+.logout-button{
+    z-index: 10;
+}
+.navbar-text img:hover+.logout-button{
+    display:block;
+    /* cursor:pointer; */
+}

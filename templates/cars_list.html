@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/grid/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="grid.css" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/carListcss.css">
+    <link rel="stylesheet" href="static/css/logoutButton.css">
+    <title>cars list page</title>
+    <style>
+      body{
+        /* background-image:linear-gradient(white,pink,magenta); */
+        background-image: url('static/images/logo_as_background.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 100vh;
+        font-size: 20px;
+      }
+      .class-for-body{
+        background-color:rgba(22, 22, 22, 0.8);
+        height:100vh;
+      }
+      .getNowButton{
+        background:blanchedalmond;
+      }
+      .getNowButton:hover{
+        background:rgb(5, 143, 189);
+        color:white;
+      }
+      .class-for-body{
+        background-color:rgba(22, 22, 22, 0.8);
+        height:max-content;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="class-for-body">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="position:fixed;right:0;left:0;z-index:10">
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/home">Home</a>
+            </li>
+            <div style="margin:10px"></div>
+            <li class="nav-item">
+              <a class="nav-link" href="/feedbackpage">Add a feedback</a>
+            </li>
+            <div style="margin:10px"></div>
+            <li class="nav-item">
+              <a class="nav-link" href="/aboutUs">About Us</a>
+            </li>
+            <div style="margin:10px"></div>
+            <li class="nav-item">
+              <a class="nav-link" href="/customerReview">Customer Reviews</a>
+            </li>
+          </ul>
+          <span class="navbar-text">
+            <img src="static/images/logo_for_navbar.png" style="height:50px;padding:unset;border-radius:10px;box-shadow:1px 1px 5px 1px grey,-1px -1px 5px 1px blue">
+          </span>
+        </div>
+      </nav>
+      <div class="container">
+          <h1>Car Resale Project</h1>
+          {%for car in carDetails%}
+      <div id="container">	
+              <div class="product-details">    
+                      <h1>{{car[0]}}</h1>
+                      <p><i>Hover over image to know more...</i></p>
+                  <div class="control">
+                          <form action="#">
+                            <button type="submit" class="getNowButton" style="cursor:pointer;padding:15px;font-size: 20px;border-style:none;border-radius:5px;box-shadow: 1px 2px 8px 1px black;">Purchase<br>it now !</button>
+                          </form>
+                  </div>  
+              </div>
+          <div class="product-image">
+              <img src="{{car[5]}}" alt="no image">
+              <div class="info">
+                  <h2> Description</h2>
+                  <ul>
+                      <li><strong>Name : </strong>{{car[0]}}</li>
+                      <li><strong>Number : </strong>{{car[1]}}</li>
+                      <li><strong>Color: </strong>{{car[2]}}</li>
+                      <li><strong>Reg. no.: </strong>{{car[3]}}</li>
+                      <li><strong>Distance covered: </strong>{{car[4]}} kms</li>
+                      <li><strong>Price: </strong> Rs.{{car[6]}}</li> 
+                  </ul>
+              </div>
+          </div>
+      </div>
+      {%endfor%}
+      <div style="padding:10px;"></div>
+      </div>
+    </div>
+    <span class="logout-button" style="background:white;padding:10px;width:80px;position:fixed;top:16px;right:18px;border-radius:8px">
+      <a href="/logout" style="text-decoration:none;color:red">Logout</a>
+    </span>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>

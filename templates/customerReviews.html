@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/grid/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="grid.css" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/logoutButton.css">
+    <title>Feedback page</title>
+    <style>
+        body{
+            background-image: url('static/images/for_home_background.png');
+            background-attachment: fixed;
+            background-size: cover;
+            background-repeat: no-repeat;
+            font-size: 20px;
+
+        }
+        .class-for-body{
+            background-color:rgba(22, 22, 22, 0.8);
+            height:inherit;
+        } 
+        img{
+            height:35px;
+        }
+    </style>
+</head>
+<body>
+    <div class="class-for-body">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="position:fixed;right:0;left:0;top:0;z-index:10">
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/home">Home</a>
+                    </li>
+                    <div style="margin:10px"></div>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/feedbackpage">Add a feedback</a>
+                    </li>
+                    <div style="margin:10px"></div>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/aboutUs">About Us</a>
+                    </li>
+                    <div style="margin:10px"></div>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/customerReview">Customer Reviews<span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+                <span class="navbar-text">
+                    <img src="static/images/logo_for_navbar.png" style="height:50px;padding:unset;border-radius:10px;box-shadow:1px 1px 5px 1px grey,-1px -1px 5px 1px blue">
+                </span>
+            </div>
+        </nav>
+        <div class="comments-container" style="padding-top:150px;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+            {% for detail in reviewDetails %}
+                <div class="comments-frame" style="box-shadow: 2px 2px 6px 1px blue,-2px -2px 6px 1px gold;margin:15px;padding:10px;border-radius:6px;background-color:rgba(218, 212, 212, 0.5);width:700px">
+                    <h4 style="color:blue">{{detail[0]}}</h4>
+                    <p style="font-style:italic">{{detail[1]}}</p>
+                    <div class="ratings-container">
+                        {% for i in range(detail[2]) %}
+                            <img src="static/images/stars-removebg-preview.png" alt="">
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}    
+        </div>
+    </div>  
+    <span class="logout-button" style="background:white;padding:10px;width:80px;position:fixed;top:16px;right:18px;border-radius:8px">
+        <a href="/logout" style="text-decoration:none;color:red">Logout</a>
+    </span>
+        <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
