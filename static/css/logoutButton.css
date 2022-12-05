@@ -1,7 +1,15 @@
 .logout-button{
     z-index: 10;
+    background:white;
+    padding:10px;
+    width:80px;
+    position:fixed;
+    top:18px;
+    right:18px;
+    border-radius:8px;
+    display:none;
 }
-.navbar-text img:hover+.logout-button{
+.navbar-text:hover > .logout-button{
     display:block;
-    /* cursor:pointer; */
+    cursor:pointer;
 }
