@@ -197,7 +197,6 @@ def pacFunc():
         #yha pr sbka join krke details nikalni hai so that receipt mei display krwa skein.....
         #  select b.name as seller_name,a.name as buyer_name,t.car_number,c.c_name,c.registration_no from transaction_table t inner join allusers a on t.buyer_id=a.user_id inner join car_to_purchase c on t.car_number=c.c_no inner join allusers b on t.seller_serial_no=b.user_id;
         cursor2=conVar.cursor()
-        cursor2.execute("""select `b.name`,`a.name`,`t.car_number`,`c.c_name`,`c.registration_no` from `transaction_table` t inner join `allusers` a on `t.buyer_id`=`a.user_id` inner join `car_to_purchase` c on `t.car_number`=`c.c_no` inner join `allusers` b on `t.seller_serial_no`=`b.user_id`""")
         return render_template('purchaseAcar.html')
     else:
         return redirect('/')
