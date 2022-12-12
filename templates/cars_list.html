@@ -85,7 +85,8 @@
                       <h1>{{car[0]}}</h1>
                       <p><i>Hover over image to know more...</i></p>
                   <div class="control">
-                          <form action="#">
+                          <form action="/purchaseAcar" method="POST">
+                            <input type="hidden" name="c_no" value="{{car[1]}}">
                             <button type="submit" class="getNowButton" style="cursor:pointer;padding:15px;font-size: 20px;border-style:none;border-radius:5px;box-shadow: 1px 2px 8px 1px black;">Purchase<br>it now !</button>
                           </form>
                   </div>  

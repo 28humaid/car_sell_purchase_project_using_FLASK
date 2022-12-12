@@ -139,7 +139,67 @@ def listOfcars():
 
 @app.route('/addACarToSell')
 def addCarFunc():
-    return '....'
-
+    if 'currentUser' in session:
+        return render_template('addACar.html')
+    else:
+        return redirect('/')
+@app.route('/afterAddingCar',methods=['POST'])
+def aacFunc():
+    if 'currentUser' in session:
+        seller_id=activeUser[0][0]
+        c_name=request.form.get('carname')
+        c_no=request.form.get('carno')
+        color=request.form.get('color')
+        registration_no=request.form.get('registerno')
+        distance_travelled=request.form.get('distance_travelled')
+        image_link=request.form.get('image_link')
+        price=request.form.get('price')
+        cursor1=conVar.cursor()
+        cursor1.execute("""insert into `transaction_table`(`car_number`,`buyer_id`,`seller_serial_no`,`now_available`) values('{}','NULL','{}','1')""".format(c_no,seller_id))
+        conVar.commit()
+        cursor2=conVar.cursor()
+        cursor2.execute("""insert into `car_to_purchase`(`c_name`,`c_no`,`color`,`registration_no`,`distance_travelled`,`image_link`,`price`) values('{}','{}','{}','{}','{}','{}','{}')""".format(c_name,c_no,color,registration_no,distance_travelled,image_link,price))
+        conVar.commit()
+        return redirect('/home')
+    else:
+        return redirect('/')
+@app.route('/updatePersonalDetail')
+def updFunc():
+    if 'currentUser' in session:
+        return render_template('updatePersonalDetail.html',activeUser=activeUser)
+    else:
+        return redirect('/')
+@app.route('/afterUserDetailupdate',methods=['POST'])
+def auFunc():
+    if 'currentUser' in session:
+        verify_no_check=activeUser[0][2]
+        verify_id=request.form.get('verify_id')
+        verify_no=request.form.get('verify_no')
+        name=request.form.get('name')
+        mob_no=request.form.get('mob_no')
+        address=request.form.get('address')
+        password=request.form.get('password')
+        cursor1=conVar.cursor()
+        cursor1.execute("""update `allusers` set `verify_id`='{}',`verify_no`='{}',`name`='{}',`mob_no`='{}',`address`='{}',`password`='{}' where `verify_no`='{}'""".format(verify_id,verify_no,name,mob_no,address,password,verify_no_check))
+        conVar.commit()
+        return redirect('/home')
+    else:
+        return redirect('/')
+######################################## FOR PURCHASING A CAR ###############
+@app.route('/purchaseAcar',methods=['POST'])
+def pacFunc():
+    if 'currentUser' in session:
+        buyer_id=activeUser[0][0]
+        c_no=request.form.get('c_no')
+        cursor1=conVar.cursor()
+        cursor1.execute("""update `transaction_table` set `buyer_id`='{}',`now_available`='{}' where `car_number`='{}'""".format(buyer_id,0,c_no))
+        conVar.commit()
+        #yha pr sbka join krke details nikalni hai so that receipt mei display krwa skein.....
+        #  select b.name as seller_name,a.name as buyer_name,t.car_number,c.c_name,c.registration_no from transaction_table t inner join allusers a on t.buyer_id=a.user_id inner join car_to_purchase c on t.car_number=c.c_no inner join allusers b on t.seller_serial_no=b.user_id;
+        cursor2=conVar.cursor()
+        cursor2.execute("""select `b.name`,`a.name`,`t.car_number`,`c.c_name`,`c.registration_no` from `transaction_table` t inner join `allusers` a on `t.buyer_id`=`a.user_id` inner join `car_to_purchase` c on `t.car_number`=`c.c_no` inner join `allusers` b on `t.seller_serial_no`=`b.user_id`""")
+        return render_template('purchaseAcar.html')
+    else:
+        return redirect('/')
 if __name__=="__main__":
     app.run(debug=True)

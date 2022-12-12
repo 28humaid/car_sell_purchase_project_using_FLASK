@@ -19,7 +19,7 @@
     <!-- Custom styles for this template -->
     <link href="grid.css" rel="stylesheet">
     <link rel="stylesheet" href="static/css/logoutButton.css">
-    <title>Home page</title>
+    <title>purchase page</title>
     <style>
         *{
           padding:0;
@@ -34,7 +34,7 @@
           font-size: 20px;
         }
       .class-for-body{
-        background-color:rgba(22, 22, 22, 0.8);
+        background-color:rgba(220, 249, 116, 0.5);
         height:100vh;
       }
       .list-group-item:hover{
@@ -48,7 +48,7 @@
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="collapse navbar-collapse" id="navbarText">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+            <li class="nav-item">
               <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
             </li>
             <div style="margin:10px"></div>
@@ -85,19 +85,16 @@
         {% endif %}
       {% endwith %}
       <div style="margin:30px"></div>
-      <div class="container">
-        {% for user in activeUser %}
-          <p style="font-size: 40px;font-style: italic;font-weight: bold;font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;color:lightblue;text-shadow: 3px 3px 20px #ff99cc,-2px 1px 30px #ff99cc;">Welcome {{user[3]}} !</p>
-        {% endfor %}
-          <div style="margin:50px"></div>
-          <div class="list-group">
-            <a href="/listOfCars" class="list-group-item list-group-item-action" style="width:40%;display:flex;align-items:center;justify-content:center;box-shadow: 1px 1px 8px 1px grey;">View available cars</a>
-            <div style="margin:35px"></div>
-            <a href="/addACarToSell" class="list-group-item list-group-item-action" style="width:40%;display:flex;align-items:center;justify-content:center;box-shadow: 1px 1px 8px 1px grey;">Add a car to sell</a>
-            <div style="margin:35px"></div>
-            <a href="/updatePersonalDetail" class="list-group-item list-group-item-action" style="width:40%;display:flex;align-items:center;justify-content:center;box-shadow: 1px 1px 8px 1px grey;">Update Personal Details</a>
-          </div>
-      </div>  
+        <div class="container">
+            <h1>Transaction successfull !</h1>
+            <h2>Here's your receipt</h2>
+            <h3>Seller name : </h3>
+            <h3>Buyer name : </h3>
+            <h3>Car number : </h3>
+            <h3>Car name : </h3>
+            <h3>Registration number : </h3>
+            <img src="" alt="">
+        </div>  
     </div>
         <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
