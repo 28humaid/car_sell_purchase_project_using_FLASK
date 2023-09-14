@@ -130,7 +130,7 @@ def logout_func():
 def listOfcars():
     if 'currentUser' in session:
         cursorVar2=conVar.cursor()
-        cursorVar2.execute("""select * from `car_to_purchase`""")
+        cursorVar2.execute("""select * from `car_to_purchase` left join `transaction_table` on `car_to_purchase`.`c_no`=`transaction_table`.`car_number` where `transaction_table`.`now_available`=1""")
         carDetails=cursorVar2.fetchall()
         return render_template('cars_list.html',carDetails=carDetails)
         # return carDetails
@@ -186,7 +186,7 @@ def auFunc():
     else:
         return redirect('/')
 ######################################## FOR PURCHASING A CAR ###############
-@app.route('/purchaseAcar',methods=['POST'])
+@app.route('/purchaseCar',methods=['POST'])
 def pacFunc():
     if 'currentUser' in session:
         buyer_id=activeUser[0][0]
@@ -196,9 +196,10 @@ def pacFunc():
         conVar.commit()
         #yha pr sbka join krke details nikalni hai so that receipt mei display krwa skein.....
         #  select b.name as seller_name,a.name as buyer_name,t.car_number,c.c_name,c.registration_no from transaction_table t inner join allusers a on t.buyer_id=a.user_id inner join car_to_purchase c on t.car_number=c.c_no inner join allusers b on t.seller_serial_no=b.user_id;
-        cursor2=conVar.cursor()
+        #cursor2=conVar.cursor()
         return render_template('purchaseAcar.html')
     else:
         return redirect('/')
+
 if __name__=="__main__":
     app.run(debug=True)
